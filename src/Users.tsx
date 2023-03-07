@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
-// import SingleUser from './SingleUser';
+import SingleUser from './SingleUser';
 
 type User = {
   id: number;
@@ -38,66 +38,71 @@ const Users: React.FC<UsersProps> = ({ users }) => {
   return (
     <>
       <h1>User List</h1>
+      <ol>
         {users
           .sort((a, b) => formatName(a.name) > formatName(b.name) ? 1 : -1)
           .map((user) => (
-            <dl key={user.id}>
-              <dt>
-                <span><strong>User ID: </strong></span>
-              </dt>
-              <dd>
-                <span>{user.id}</span>
-              </dd>
-              {/* <h2>
-                <Link to={`/users/${user.id}`}>{user.name}</Link>
-              </h2> */}
-              <dt>
-                <span>
-                  <strong aria-label='Email label'>Email: </strong>
-                </span>
-              </dt>
-              <dd>
-                <span>
-                  <a href={`mailto:${user.email}`} aria-label={`Email ${user.name}`}>
-                    {user.email}
-                  </a>
-                </span>
-              </dd>
-              <dt>
-                <span aria-label='Company name'>
-                  <strong aria-label='Address city'>City:</strong> {user.address.city}
-                </span>
-              </dt>
-              <dd>
-                <span>
-                  <strong aria-label='Phone label'>Phone: </strong>
-                </span>
-                <span aria-label={formatAriaPhoneNumber(user.phone)}>
-                  {user.phone}
-                </span>
-              </dd>
-              <dt>
-                <span>
-                  <strong aria-label='Website label'>Website (Opens in a new tab): </strong>
-                </span>
-              </dt>
-              <dd>
-                <span>
-                  <a href={`https://${user.website}`}
-                    target='_blank'
-                    aria-label='Website'
-                    rel='noopener noreferrer'>
-                    {user.website}
-                  </a>
-                </span>
-              </dd>
-            </dl>
+            <li key={user.id}>
+              <h2>{user.name}</h2>
+              <dl >
+                <dt>
+                  <span><strong>User ID: </strong></span>
+                </dt>
+                <dd>
+                  <span>{user.id}</span>
+                </dd>
+                <dt>
+                  <span>
+                    <strong>Email: </strong>
+                  </span>
+                </dt>
+                <dd>
+                  <span>
+                    <a href={`mailto:${user.email}`} aria-label={`Email ${user.name}`}>
+                      {user.email}
+                    </a>
+                  </span>
+                </dd>
+                <dt>
+                  <span>
+                    <strong>City:</strong>
+                  </span>
+                </dt>
+                <dd><span>{user.address.city}</span></dd>
+                <dt>
+                  <span>
+                    <strong>Phone: </strong>
+                  </span>
+                </dt>
+                <dd>
+                  <span aria-label={formatAriaPhoneNumber(user.phone)}>
+                    {user.phone}
+                  </span>
+                </dd>
+                <dt>
+                  <span>
+                    <strong>Website: </strong>
+                  </span>
+                </dt>
+                <dd>
+                  <span>
+                    <a href={`https://${user.website}`} target='_blank' aria-label='Website' rel='noopener noreferrer'>
+                      {user.website}
+                    </a>{' '}
+                    (Opens in a new tab)
+                  </span>
+                </dd>
+              </dl>
+              <a href={`/users/${user.id}`} className='full-detail-link'>
+                Full details
+              </a>
+            </li>
           ))}
-        {/* <Routes>
+      </ol>
+      {/* <Routes>
         <Route path='/users/:id' element={<SingleUser users={users} />} />
       </Routes> */}
     </>
   );
 };
-
 export default Users;

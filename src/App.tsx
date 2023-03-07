@@ -54,7 +54,7 @@ const App: any = () => {
   return (
     <div>
       {users.length > 0 ? (
-        <div role='main' aria-label='List of users'>
+        <div className='main' role='main' aria-label='List of users'>
           <Users users={users} />
         </div >
       ) : (
