@@ -91,7 +91,7 @@ const UsersList: React.FC<UsersListProps> = ({ users }) => {
                 {generateUsersListDlContents(user)}
               </dl>
               <Link to={`/users/${user.id}`} className="full-details-button">
-                <p>Full details about<br/>
+                <p>Full details about<br />
                   {user.name}
                 </p>
               </Link>
