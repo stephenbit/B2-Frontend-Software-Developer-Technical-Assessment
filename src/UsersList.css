@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: 240px 0 0 140px;
+    margin: 0 0 0 140px;
 }
 
 ol {
@@ -69,6 +69,7 @@ dd span {
     line-height: 30px;
     font-weight: bold;
     margin-top: 30px;
+    font-size: 20px;
 }
 
 .full-details-button:hover {
@@ -78,7 +79,7 @@ dd span {
 
 li a p {
     line-height: 20px;
-    width: 160px;
+    width: 200px;
 }
 
 .user-container li {
@@ -86,20 +87,24 @@ li a p {
 }
 
 @media only screen and (max-width: 768px) {
+    .main {
+        padding: 0 20px 30px 20px;
+    }
+
     dt span {
         font-size: 1.3em;
     }
 
     .column {
-        margin: 120px 30px 30px 30px;
+        margin: 0 30px 30px 30px;
     }
 
     h2 {
-        font-size: 2em;
+        font-size: 2.7em;
     }
 
     h3 {
-        font-size: 1.8em;
+        font-size: 2em;
     }
 
     .user-container dd {
@@ -123,21 +128,6 @@ li a p {
 }
 
 @media only screen and (max-width: 600px) {
-    .main {
-        padding: 30px;
-    }
-
-    .column {
-        margin: 120px 0 0 0;
-    }
-
-    h2 {
-        font-size: 1.8em;
-    }
-
-    h3 {
-        font-size: 1.6em;
-    }
 
     dt span {
         font-size: 25px;
@@ -170,10 +160,18 @@ li a p {
         display: block;
         line-height: 30px;
     }
+}
 
-    li a p {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
+@media only screen and (max-width: 400px) {
+    .main {
+        padding: 0 0 30px 0;
+    }
+
+    dt span {
+        font-size: 1.3em;
+    }
+
+    .column {
+        margin: 10px;
     }
 }
