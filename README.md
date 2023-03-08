@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+# User Directory App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the User Directory App! This is a simple and intuitive web application that displays a list of users along with their basic details, such as name, email, phone number, and website.
 
-## Available Scripts
+## Features
+The app provides the following features:
+- A list of users with their names and basic details
+- The ability to sort the list alphabetically by name
+- Full user details, including address and company information, can be viewed by clicking on a user.
 
-In the project directory, you can run:
+## Architecture
+This app is built using React and uses the `react-router-dom` library for routing. The data is obtained from the `jsonplaceholder` API. The `UsersList` component displays the user list, and the `SingleUser` component displays the full details of a selected user.
 
-### `npm start`
+## Future Improvements
+While this app is functional and user-friendly, there is always room for improvement. Some possible future improvements include:
+- Adding a search functionality to allow users to find specific users quickly
+- Adding pagination to handle larger data sets more efficiently
+- Improving the styling and layout to make the app more visually appealing.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Presentation
+This app was built as part of a Technical Assessment for the B2 Frontend Software Developer position. During the interview, I will present the app and discuss my thought process and decision-making. I will explain the architecture and design of the app, including the choice to use React and `react-router-dom`, the use of the `jsonplaceholder` API for data, and the features included in the app. I will also be able to discuss any challenges I faced during development and how I overcame them.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The interviewers will have the opportunity to ask questions about the app and my development process. I look forward to discussing my work on this project and demonstrating my skills as a frontend software developer.
 
-### `npm test`
+## Installation and Usage
+To run the app, you can clone the repository using the following command:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+``git clone https://github.com/stephenbit/B2-Frontend-Software-Developer-Technical-Assessment.git``
 
-### `npm run build`
+Then, navigate to the project directory and install the dependencies using the following command:
+``npm install``
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Finally, start the app using the following command:
+``npm start watch``
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This will start the app on ``localhost:8080``.
