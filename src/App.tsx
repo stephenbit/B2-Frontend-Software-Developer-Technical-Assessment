@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Users from './Users'
+import { useEffect, useState } from 'react';
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import UsersList from './UsersList';
+import SingleUser from './SingleUser';
 import './App.css';
 
-type User = {
+export interface IUser {
   id: number;
   name: string;
   username: string;
@@ -24,16 +26,16 @@ type User = {
     catchPhrase: string;
     bs: string;
   };
-};
+}
 
-const App: any = () => {
-  const [users, setUsers] = useState<User[]>([]);
+function App() {
+  const [users, setUsers] = useState<IUser[]>([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        const response = await fetch("https://jsonplaceholder.typicode.com/users");
         const json = await response.json();
         setUsers(json);
       } catch (e) {
@@ -46,22 +48,31 @@ const App: any = () => {
   if (error) {
     return (
       <div>
-        There was an error loading the data.
-        Please reload the page or try again later.
+        There was an error loading the data. Please reload the page or try again later.
       </div>
-    )
+    );
   }
+
   return (
     <div>
-      {users.length > 0 ? (
-        <div role='main' aria-label='List of users'>
-          <Users users={users} />
-        </div >
-      ) : (
-        <div>Loading...</div>
-      )}
+      <BrowserRouter>
+        <header>
+          <h1>User Directory</h1>
+        </header>
+        <main className="main">
+          <Routes>
+            <Route path="/" element={<UsersList users={users} />} />
+            <Route path="/users/:userId" element={<SingleUser users={users} />} />
+          </Routes>
+        </main>
+        <footer className="App-footer">
+          <p>Created by S. Ramsay, &copy; {new Date().getFullYear()}</p>
+          <p>API provided by <a href="https://jsonplaceholder.typicode.com/">typicode</a></p>
+        </footer>
+      </BrowserRouter>
+
     </div>
   );
-}
+};
 
 export default App;

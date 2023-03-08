@@ -1,3 +1,110 @@
-li {
-  list-style-type: none;
-}
+  /* App.css  */
+  @import url('https://fonts.googleapis.com/css2?family=Roboto');
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: calc(100vh - 4rem);
+  }
+
+  header {
+    background-color: #E8E7ED;
+    padding: 2em;
+    overflow: visible;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 7vh;
+  }
+
+  header::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -54px;
+    left: -6px;
+    width: 482px;
+    height: 220px;
+    background-color: #E6007E;
+    transform: rotate(12deg);
+    border-bottom-right-radius: 1rem;
+    z-index: -1;
+  }
+
+  header::before:hover {
+    background-color: #201751;
+  }
+
+  h1 {
+    color: #fff;
+    font-size: 4rem;
+    margin: 0;
+  }
+
+  footer {
+    background-color: #172D13;
+    padding: 1rem;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 2rem;
+  }
+
+  footer p:first-child {
+    margin: 0;
+  }
+
+  footer a {
+    font-size: 16px;
+    color: #201751;
+    transition: all 0.2s ease-in-out;
+  }
+
+  @media only screen and (max-width: 768px) {
+    header {
+      padding: 2em;
+      height: 3vh;
+    }
+
+    h1 {
+      font-size: 1.7em;
+    }
+
+    header::before {
+      top: -25px;
+      left: -6px;
+      width: 225px;
+      height: 133px;
+      transform: rotate(12deg);
+    }
+
+  }
+
+  @media only screen and (max-width: 600px) {
+    header {
+      padding: 2em;
+      height: 3vh;
+    }
+
+    h1 {
+      font-size: 1.7em;
+    }
+
+    header::before {
+      top: -25px;
+      left: -6px;
+      width: 225px;
+      height: 133px;
+      transform: rotate(12deg);
+    }
+
+  }
