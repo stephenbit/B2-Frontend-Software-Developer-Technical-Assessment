@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { HashRouter, Route, Routes } from "react-router-dom";
-import UsersList from './UsersList';
-import SingleUser from './SingleUser';
+import UsersList from './routes/UsersList';
+import SingleUser from './routes/SingleUser';
 import './App.css';
 
 export interface IUser {
