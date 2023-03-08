@@ -61,6 +61,7 @@ const UsersList: React.FC<UsersListProps> = ({ users }) => {
               {user.website}
             </a>
             {' '}
+            <wbr />
             (Opens in a new tab)
           </span>
         )

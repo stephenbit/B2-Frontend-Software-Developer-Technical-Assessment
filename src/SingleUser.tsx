@@ -43,12 +43,17 @@ function SingleUser({ users }: SingleUserProps) {
       },
       {
         label: 'Website:', value: (
-          <a
-            href={`https://${user.website}`}
-            target="_blank"
-            rel="noopener noreferrer">
-            <span>{user.website}</span>
-          </a>
+          <span>
+            <a
+              href={`https://${user.website}`}
+              target="_blank"
+              rel="noopener noreferrer">
+              {user.website}
+            </a>
+            {' '}
+            <wbr />
+            (Opens in a new tab)
+          </span>
         )
       },
       { label: 'Company:', value: user.company.name },
@@ -74,7 +79,11 @@ function SingleUser({ users }: SingleUserProps) {
       <div className='user-container'>
         <dl>
           {generateSingleUserDlContents(user)}
-          <Link to={`/`} className="full-details-button">Return to the list of users</Link>
+
+          <Link to={`/`} className="full-details-button">
+            <p>Return to the <br />
+              list of users</p>
+          </Link>
         </dl>
       </div>
     </div>

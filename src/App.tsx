@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import UsersList from './UsersList';
 import SingleUser from './SingleUser';
 import './App.css';
@@ -53,9 +53,15 @@ function App() {
     );
   }
 
+  if (!users || users.length < 1) {
+    return (
+      <div>Loading...</div>
+    )
+  }
+
   return (
-    <div>
-      <BrowserRouter>
+    <HashRouter>
+      <div>
         <header>
           <h1>User Directory</h1>
         </header>
@@ -69,9 +75,8 @@ function App() {
           <p>Created by S. Ramsay, &copy; {new Date().getFullYear()}</p>
           <p>API provided by <a href="https://jsonplaceholder.typicode.com/">typicode</a></p>
         </footer>
-      </BrowserRouter>
-
-    </div>
+      </div>
+    </HashRouter>
   );
 };
 
