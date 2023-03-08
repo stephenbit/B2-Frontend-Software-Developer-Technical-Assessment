@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: 0 0 0 140px;
+    margin: 240px 0 0 140px;
 }
 
 ol {
@@ -128,7 +128,6 @@ li a p {
 }
 
 @media only screen and (max-width: 600px) {
-
     dt span {
         font-size: 25px;
 
