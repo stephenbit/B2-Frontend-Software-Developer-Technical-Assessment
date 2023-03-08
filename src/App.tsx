@@ -62,7 +62,7 @@ function App() {
   return (
     <HashRouter>
       <div>
-        <header role="heading">
+        <header>
           <h1>User Directory</h1>
         </header>
         <main className="main">
