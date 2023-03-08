@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { IUser } from './App';
-import { formatAriaPhoneNumber } from './UsersList';
+import { IUser } from '../App';
+import { formatAriaPhoneNumber } from '../helpers/HelperFunctions'
 
 interface SingleUserProps {
   users: IUser[];
@@ -74,7 +74,7 @@ function SingleUser({ users }: SingleUserProps) {
   }
 
   return (
-    <div className='column'>
+    <div className='users-list'>
       <h2>{user.name}</h2>
       <div className='user-container'>
         <dl>

@@ -87,9 +87,6 @@ li a p {
 }
 
 @media only screen and (max-width: 768px) {
-    .main {
-        padding: 0 20px 30px 20px;
-    }
 
     dt span {
         font-size: 1.3em;
@@ -162,15 +159,8 @@ li a p {
 }
 
 @media only screen and (max-width: 400px) {
-    .main {
-        padding: 0 0 30px 0;
-    }
 
     dt span {
         font-size: 1.3em;
-    }
-
-    .column {
-        margin: 10px;
     }
 }
