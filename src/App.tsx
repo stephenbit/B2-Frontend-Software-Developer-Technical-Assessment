@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import UsersList from './UsersList';
 import SingleUser from './SingleUser';
 import './App.css';
 
-export interface User {
+export interface IUser {
   id: number;
   name: string;
   username: string;
@@ -29,7 +29,7 @@ export interface User {
 }
 
 function App() {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -55,18 +55,22 @@ function App() {
 
   return (
     <div>
-      {users.length > 0 ? (
-        <div className="main" role="main" aria-label="List of users">
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<UsersList users={users} />} />
-              <Route path="/users/:userId" element={<SingleUser users={users} />} />
-            </Routes>
-          </BrowserRouter>
-        </div>
-      ) : (
-        <div>Loading...</div>
-      )}
+      <BrowserRouter>
+        <header>
+          <h1>User Directory</h1>
+        </header>
+        <main className="main">
+          <Routes>
+            <Route path="/" element={<UsersList users={users} />} />
+            <Route path="/users/:userId" element={<SingleUser users={users} />} />
+          </Routes>
+        </main>
+        <footer className="App-footer">
+          <p>Created by S. Ramsay, &copy; {new Date().getFullYear()}</p>
+          <p>API provided by <a href="https://jsonplaceholder.typicode.com/">typicode</a></p>
+        </footer>
+      </BrowserRouter>
+
     </div>
   );
 };

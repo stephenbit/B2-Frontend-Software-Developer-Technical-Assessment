@@ -1,57 +1,82 @@
-import { useParams } from 'react-router-dom';
-import { User } from './App';
+import React from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { IUser } from './App';
+import { formatAriaPhoneNumber } from './UsersList';
+
 interface SingleUserProps {
-  users: User[];
+  users: IUser[];
 }
+
 function SingleUser({ users }: SingleUserProps) {
   const { userId } = useParams<{ userId: string }>();
   const user = users.find((user) => user.id.toString() === userId);
+
+  const generateSingleUserDlContents = (user: IUser) => {
+    const dlContents = [
+      { label: 'ID:', value: user.id },
+      { label: 'Username:', value: user.username },
+      { label: 'Email:', value: user.email },
+      {
+        label: 'Address:', value: (
+          <address>
+            <span>{user.address.street}, {user.address.suite}</span>
+            <br />
+            <span>{user.address.city}, {user.address.zipcode}</span>
+          </address>
+        )
+      },
+      {
+        label: 'Location:', value: (
+          <span>
+            <span>Latitude:</span> {user.address.geo.lat}
+            <br />
+            <span>Longitude:</span> {user.address.geo.lng}
+          </span>
+        )
+      },
+      {
+        label: 'Phone:', value: (
+          <span aria-label={formatAriaPhoneNumber(user.phone)}>
+            {user.phone}
+          </span>
+        )
+      },
+      {
+        label: 'Website:', value: (
+          <a
+            href={`https://${user.website}`}
+            target="_blank"
+            rel="noopener noreferrer">
+            <span>{user.website}</span>
+          </a>
+        )
+      },
+      { label: 'Company:', value: user.company.name },
+      { label: 'Catchphrase:', value: user.company.catchPhrase },
+      { label: 'BS:', value: user.company.bs },
+    ];
+    return dlContents.map(({ label, value }, index) => (
+      <React.Fragment key={index}>
+        <dt><span>{label}</span></dt>
+        <dd><span>{value}</span></dd>
+      </React.Fragment>
+    ));
+  };
+
 
   if (!user) {
     return <div>User not found</div>;
   }
 
   return (
-    <div className='user-container'>
-      <h1>{user.name}</h1>
-      <dl>
-        <dt><span>ID:</span></dt>
-        <dd><span>{user.id}</span></dd>
-        <dt><span>Username:</span></dt>
-        <dd><span>{user.username}</span></dd>
-        <dt><span>Email:</span></dt>
-        <dd><span>{user.email}</span></dd>
-        <dt><span>Address:</span></dt>
-        <dd>
-          <address>
-            <span>{user.address.street}, {user.address.suite}</span>
-            <br />
-            <span>{user.address.city}, {user.address.zipcode}</span>
-          </address>
-        </dd>
-        <dt><span>Location:</span></dt>
-        <dd>
-          <span><span>Latitude:</span> {user.address.geo.lat}</span>
-          <br />
-          <span><span>Longitude:</span> {user.address.geo.lng}</span>
-        </dd>
-
-        {/* add aria function to read phone number */}
-        <dt><span>Phone:</span></dt>
-        <dd><span>{user.phone}</span></dd>
-        <dt><span>Website:</span></dt>
-        <dd>
-          <a href={`https://${user.website}`} target="_blank" rel="noopener noreferrer">
-            <span>{user.website}</span>
-          </a>
-        </dd>
-        <dt><span>Company:</span></dt>
-        <dd><span>{user.company.name}</span></dd>
-        <dt><span>Catchphrase:</span></dt>
-        <dd><span>{user.company.catchPhrase}</span></dd>
-        <dt><span>BS:</span></dt>
-        <dd><span>{user.company.bs}</span></dd>
-      </dl>
+    <div className='column'>
+      <h2>{user.name}</h2>
+      <div className='user-container'>
+        <dl>
+          {generateSingleUserDlContents(user)}
+          <Link to={`/`} className="full-details-button">Return to the list of users</Link>
+        </dl>
+      </div>
     </div>
   );
 }
