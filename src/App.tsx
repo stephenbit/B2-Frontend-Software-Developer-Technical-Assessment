@@ -3,6 +3,7 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 import UsersList from './routes/UsersList';
 import SingleUser from './routes/SingleUser';
 import './App.css';
+import './LoadingBar.css';
 
 export interface IUser {
   id: number;
@@ -31,6 +32,7 @@ export interface IUser {
 function App() {
   const [users, setUsers] = useState<IUser[]>([]);
   const [error, setError] = useState(false);
+  const [showLoadingBar, setShowLoadingBar] = useState(true);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -45,23 +47,29 @@ function App() {
     fetchUsers();
   }, []);
 
-  if (error) {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoadingBar(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+  if (!users || users.length < 1) {
     return (
       <div>
-        There was an error loading the data. Please reload the page or try again later.
+        {showLoadingBar && (
+          <div className="loading-message">
+            <p>Loading, please wait...</p>
+            <p>If the content doesn't appear after a few seconds, please refresh the page or try again later.</p>
+          </div>
+        )}
+        <div className="loading-bar"></div>
       </div>
     );
   }
 
-  if (!users || users.length < 1) {
-    return (
-      <div>Loading...</div>
-    )
-  }
-
   return (
-    <HashRouter>
-      <div>
+    <div>
+      <HashRouter>
         <header>
           <h1>User Directory</h1>
         </header>
@@ -75,8 +83,8 @@ function App() {
           <p>Created by S. Ramsay, &copy; {new Date().getFullYear()}</p>
           <p>API provided by <a href="https://jsonplaceholder.typicode.com/">typicode</a></p>
         </footer>
-      </div>
-    </HashRouter>
+      </HashRouter>
+    </div>
   );
 };
 

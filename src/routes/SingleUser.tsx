@@ -79,12 +79,11 @@ function SingleUser({ users }: SingleUserProps) {
       <div className='user-container'>
         <dl>
           {generateSingleUserDlContents(user)}
-
-          <Link to={`/`} className="full-details-button">
-            <p>Return to the <br />
-              list of users</p>
-          </Link>
         </dl>
+        <Link to={`/`} className="full-details-button">
+          <p>Return to the <br />
+            full list</p>
+        </Link>
       </div>
     </div>
   );

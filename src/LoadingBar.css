@@ -1,0 +1,32 @@
+.loading-bar {
+    height: 8px;
+    width: 100%;
+    background-color: #E8E7ED;
+    position: fixed;
+    top: 7vh;
+    left: 0;
+    z-index: 9999;
+}
+
+.loading-bar::before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 0%;
+    background-color: #E6007E;
+    animation: loading 2s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 50%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
