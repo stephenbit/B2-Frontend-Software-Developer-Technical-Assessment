@@ -1,120 +1,146 @@
-  /* App.css  */
-  @import url('https://fonts.googleapis.com/css2?family=Roboto');
+/* App.css */
 
-  body {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    margin: 0;
-    min-height: 100vh;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
 
-  .main {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    min-height: calc(100vh - 4rem);
-    padding-top: 200px;
-    padding-left: 130px;
-  }
+:root {
+  --primary-color: #201751;
+  --secondary-color: #E6007E;
+  --background-color: #E8E7ED;
+  --primary-text-color: #080808;
+}
 
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  margin: 0;
+  height: 100vh;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2') format('woff2');
+  font-display: swap;
+}
+
+header {
+  background-color: var(--background-color);
+  overflow: visible;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+header::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -54px;
+  left: -6px;
+  width: 482px;
+  height: 220px;
+  background-color: var(--secondary-color);
+  transform: rotate(12deg);
+  border-bottom-right-radius: 1rem;
+  z-index: -1;
+}
+
+header::before:hover {
+  background-color: var(--primary-color);
+}
+
+h1 {
+  color: #fff;
+  font-size: 4rem;
+  margin-left: 35px;
+  margin-top: 25px;
+}
+
+h2 {
+  color: var(--primary-color);
+  font-size: 3em;
+  margin: 0 0 40px 0;
+}
+
+h3 {
+  font-size: 2.6em;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+a {
+  transition: all 0.2s ease-in-out;
+}
+
+footer {
+  background-color: var(--background-color);
+  font-size: 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  justify-items: center;
+  align-items: center;
+  height: 10vh;
+  padding: 0 20px;
+  text-align: center;
+}
+
+footer p:first-child {
+  justify-self: start;
+  grid-column: 1;
+}
+
+footer p:last-child {
+  justify-self: end;
+  grid-column: 3;
+}
+
+@media only screen and (max-width: 768px) {
   header {
-    background-color: #E8E7ED;
-    padding: 2em;
-    overflow: visible;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 7vh;
-  }
-
-  header::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: -54px;
-    left: -6px;
-    width: 482px;
-    height: 220px;
-    background-color: #E6007E;
-    transform: rotate(12deg);
-    border-bottom-right-radius: 1rem;
-    z-index: -1;
-  }
-
-  header::before:hover {
-    background-color: #201751;
+    height: 80px;
   }
 
   h1 {
-    color: #fff;
-    font-size: 4rem;
-    margin: 0;
+    font-size: 1.7em;
+    margin-left: 18px;
+  }
+
+  header::before {
+    top: -25px;
+    left: -6px;
+    width: 225px;
+    height: 133px;
+    transform: rotate(12deg);
   }
 
   footer {
-    background-color: #E8E7ED;
-    padding: 2em;
-    height: 7vh;
+    height: 5vh;
     font-size: 0.8rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
-  footer p:first-child {
-    margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.7em;
   }
 
-  footer a {
-    font-size: 20px;
-    color: #201751;
+  header::before {
+    top: -25px;
+    left: -6px;
+    width: 225px;
+    height: 133px;
+    transform: rotate(12deg);
   }
 
-  a {
-    transition: all 0.2s ease-in-out;
-
+  footer {
+    height: 5vh;
+    font-size: 0.7rem;
   }
+}
 
-  @media only screen and (max-width: 768px) {
-    .main {
-      padding: 130px 20px 0 20px;
-    }
-
-    header {
-      padding: 2em;
-      height: 3vh;
-    }
-
-    h1 {
-      font-size: 1.7em;
-    }
-
-    header::before {
-      top: -25px;
-      left: -6px;
-      width: 225px;
-      height: 133px;
-      transform: rotate(12deg);
-    }
-
-  }
-
-  @media only screen and (max-width: 600px) {
-
-    header {
-      padding: 2em;
-      height: 3vh;
-    }
-
-    h1 {
-      font-size: 1.7em;
-    }
-
-    header::before {
-      top: -25px;
-      left: -6px;
-      width: 225px;
-      height: 133px;
-      transform: rotate(12deg);
-    }
-  }
+/* App.css end */

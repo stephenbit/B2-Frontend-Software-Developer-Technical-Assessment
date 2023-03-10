@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IUser } from '../App';
+import { IUser } from "../helpers/Types";
 import { formatAriaPhoneNumber, formatName } from '../helpers/HelperFunctions'
 import './UsersList.css';
-
-// type UsersListProps = Pick<IUser, 'id' | 'name' | 'email' | 'phone' | 'website'>
-//   & { address: Array<Pick<IUser['address'], 'city'>> }
 
 interface UsersListProps {
   users: IUser[];
 }
 
 const UsersList: React.FC<UsersListProps> = ({ users }) => {
+
+  const sortedUsers = users.sort((a: IUser, b: IUser) => (
+    formatName(a.name) > formatName(b.name) ? 1 : -1
+  ));
 
   const generateUsersListDlContents = (user: IUser) => {
     const dlContents = [
@@ -65,22 +66,26 @@ const UsersList: React.FC<UsersListProps> = ({ users }) => {
   };
 
   return (
-    <div className='users-list'>
+    <div className='column'>
       <h2>User List</h2>
-      <ol>
-        {users.sort((a, b) => (formatName(a.name) > formatName(b.name) ? 1 : -1)).map((user) => (
-          <li className="user-container" key={user.id}>
-            <h3>{user.name}</h3>
-            <dl>
-              {generateUsersListDlContents(user)}
-              <Link to={`/users/${user.id}`} className="full-details-button">
-                <p>Full details</p>
-              </Link>
-            </dl>
-          </li>
-        ))}
-      </ol>
-    </div >
+      <div>
+        <ol>
+          {sortedUsers.map((user) => (
+            <li key={user.id} className="user-list-item">
+              <div className='users-list-user-container'>
+                <h3>{user.name}</h3>
+                <dl>
+                  {generateUsersListDlContents(user)}
+                </dl>
+                <Link to={`/users/${user.id}`} className="full-details-button">
+                  <p>Full details</p>
+                </Link>
+              </div >
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
   );
 };
 
