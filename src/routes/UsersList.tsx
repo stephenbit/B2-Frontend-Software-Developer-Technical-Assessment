@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IUser } from "../helpers/Types";
-import { formatAriaPhoneNumber, formatName } from '../helpers/HelperFunctions'
+import { UsersListUser } from "../helpers/Types";
+import {
+  formatAriaPhoneNumber,
+  formatNameWithoutTitles,
+  searchUsers
+} from '../helpers/HelperFunctions';
 import './UsersList.css';
 
-interface UsersListProps {
-  users: IUser[];
-}
+const UsersList: React.FC<{ users: UsersListUser[] }> = ({ users }) => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-const UsersList: React.FC<UsersListProps> = ({ users }) => {
-
-  const sortedUsers = users.sort((a: IUser, b: IUser) => (
-    formatName(a.name) > formatName(b.name) ? 1 : -1
+  const sortedUsers = users.sort((a, b) => (
+    formatNameWithoutTitles(a.name) > formatNameWithoutTitles(b.name) ? 1 : -1
   ));
 
-  const generateUsersListDlContents = (user: IUser) => {
+  const generateUsersListDlContents = (user: UsersListUser) => {
     const dlContents = [
       { label: 'User ID:', value: user.id },
       {
@@ -65,19 +66,44 @@ const UsersList: React.FC<UsersListProps> = ({ users }) => {
     ));
   };
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setSearchTerm(value);
+  };
+
+  const filteredUsers = searchTerm ? searchUsers(sortedUsers, searchTerm) : sortedUsers;
+
   return (
     <div className='column'>
       <h2>User List</h2>
+      <div className='search-container'>
+        <label htmlFor="search-input">Search by name:</label>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search"
+          value={searchTerm}
+          onChange={handleSearch}
+          aria-label="Search for users"
+          {...(filteredUsers.length === 0 && {
+            'aria-describedby': 'no-users-found'
+          })}
+        />
+      </div>
       <div>
         <ol>
-          {sortedUsers.map((user) => (
+          {filteredUsers.map((user) => (
             <li key={user.id} className="user-list-item">
               <div className='users-list-user-container'>
                 <h3>{user.name}</h3>
                 <dl>
                   {generateUsersListDlContents(user)}
                 </dl>
-                <Link to={`/users/${user.id}`} className="full-details-button">
+                <Link
+                  to={`/users/${user.id}`}
+                  className="full-details-button"
+                  aria-label={`View details for ${user.name}`}
+                >
                   <p>Full details</p>
                 </Link>
               </div >
@@ -85,7 +111,7 @@ const UsersList: React.FC<UsersListProps> = ({ users }) => {
           ))}
         </ol>
       </div>
-    </div>
+    </div >
   );
 };
 
