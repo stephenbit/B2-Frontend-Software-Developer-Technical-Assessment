@@ -1,15 +1,21 @@
-/* UsersList.css */
-
 .column {
-    margin: 0 auto;
+    margin-left: 10vw;
     padding: 20px;
     padding-top: 230px;
     max-width: 960px;
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
-.users-list-user-container-list,
-.users-list-user-container {
+.column>h2,
+.column>.search-container {
+    grid-column: 1 / 2;
+}
+
+.users-list-user-container,
+.single-user-user-container {
     padding-left: 40px;
+    padding-top: 30px
 }
 
 ol {
@@ -48,28 +54,61 @@ a.full-details-button {
     border-radius: 16px;
     color: #fff;
     display: inline-block;
-    font-size: 16px;
+    font-size: 25px;
     margin-top: 10px;
     padding: 10px 50px;
     text-align: center;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    min-width: 200px;
 }
 
 a.full-details-button:hover {
     background-color: var(--secondary-color);
 }
 
-/* Media queries for responsiveness */
+.search-container {
+    grid-column: 1 / 2;
+    padding-left: 40px;
+    padding-top: 20px;
+}
+
+.search-box {
+    display: grid;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+    max-width: 100%;
+}
+
+#search-input {
+    border: 2px solid var(--primary-color);
+    border-radius: 16px;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+label[for="search-input"] {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    width: 100%;
+}
 
 @media only screen and (max-width: 768px) {
     .column {
         padding-top: 140px;
         max-width: 100%;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin: 0;
     }
 
-    .users-list-user-container-list,
-    .users-list-user-container {
+    .users-list-user-container,
+    .single-user-user-container {
         padding-left: 0;
     }
 
@@ -105,10 +144,27 @@ a.full-details-button:hover {
     h3 {
         font-size: 20px;
     }
+
+    a.full-details-button {
+        font-size: 22px;
+        display: block;
+    }
+
+    #search-input {
+        max-width: -webkit-fill-available;
+    }
+
+    .search-box {
+        grid-template-columns: 1fr;
+    }
 }
 
-@media only screen and (max-width: 600px) {
-    a.full-details-button {
-        display: block;
+@media only screen and (max-width: 480px) {
+    label[for="search-input"] {
+        font-size: 16px;
+    }
+
+    #search-input {
+        font-size: 14px;
     }
 }

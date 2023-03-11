@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UsersList from './routes/UsersList';
 import SingleUser from './routes/SingleUser';
 import { IUser } from "./helpers/Types";
+import Header from "./components/Header";
 import './App.css';
 import './LoadingBar.css';
 
@@ -32,7 +33,7 @@ function App() {
       <div className='loading-container'>
         {isLoading && (
           <div className="loading-message">
-            <img src="./maskable_icon.png" alt="Social Security Scotland logo" />
+            <img src="/maskable_icon.png" alt="Social Security Scotland logo" />
             <p>Loading, please wait...</p>
           </div>
         )}
@@ -43,16 +44,13 @@ function App() {
           </div>
         </div>
       </div>
-
     );
   }
 
   return (
     <div>
       <BrowserRouter>
-        <header>
-          <h1>User Directory</h1>
-        </header>
+        <Header />
         <main className="main" role="main">
           <Routes>
             <Route path="/" element={<UsersList users={users} />} />
@@ -66,6 +64,6 @@ function App() {
       </BrowserRouter>
     </div>
   );
-};
+}
 
 export default App;

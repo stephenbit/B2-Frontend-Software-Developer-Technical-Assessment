@@ -21,3 +21,14 @@ export interface IUser {
         bs: string;
     };
 }
+
+export interface UsersListUser {
+    id: number;
+    name: string;
+    email: string;
+    address: {
+        city: string;
+    };
+    phone: string;
+    website: string;
+}
