@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { IUser } from "../helpers/Types";
 import { formatAriaPhoneNumber } from '../helpers/HelperFunctions'
