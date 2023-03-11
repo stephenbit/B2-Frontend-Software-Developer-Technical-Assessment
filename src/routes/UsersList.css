@@ -1,166 +1,114 @@
+/* UsersList.css */
+
 .column {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 240px 0 0 140px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 230px;
+    max-width: 960px;
+}
+
+.users-list-user-container-list,
+.users-list-user-container {
+    padding-left: 40px;
 }
 
 ol {
+    list-style: none;
+    margin: 0;
     padding: 0;
 }
 
-.user-container {
-    display: flex;
-    border-bottom: 4px #E6007E solid;
+.users-list-user-container,
+.single-user-user-container {
+    border-bottom: 5px solid var(--secondary-color);
     padding-bottom: 20px;
-    margin: 20px 0;
-    width: 100%;
-    max-width: 600px;
-    background-color: #fff;
 }
 
-h2 {
-    color: #201751;
-    font-size: 3em;
-    margin: 0;
-    align-self: flex-start;
+dt {
+    font-weight: bold;
 }
 
-h3 {
-    font-size: 2.6em;
-    color: #201751;
-}
-
-dt span,
-dd span a,
-dd span {
+dl {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 10px 10px;
     font-size: 25px;
 }
 
-.user-container dl {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    grid-row-gap: 10px;
+dl dd a {
+    color: var(--secondary-color);
 }
 
-.user-container dt {
-    flex-basis: 30%;
-    font-weight: bold;
+dl dd a:hover {
+    text-decoration: underline;
 }
 
-.user-container dd {
-    flex-basis: 70%;
-    margin: 0;
-}
-
-.full-details-button {
-    display: inline-block;
-    padding: 2px 8px;
-    background-color: #201751;
+a.full-details-button {
+    background-color: var(--primary-color);
+    border-radius: 16px;
     color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 10px 50px;
     text-align: center;
     text-decoration: none;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    height: fit-content;
-    line-height: 30px;
-    font-weight: bold;
-    margin-top: 30px;
-    font-size: 20px;
+    transition: background-color 0.3s ease;
 }
 
-.full-details-button:hover {
-    background-color: #E6007E;
-    color: #fff;
+a.full-details-button:hover {
+    background-color: var(--secondary-color);
 }
 
-li a p {
-    line-height: 20px;
-    width: 200px;
-}
-
-.user-container li {
-    list-style-type: none;
-}
+/* Media queries for responsiveness */
 
 @media only screen and (max-width: 768px) {
-
-    dt span {
-        font-size: 1.3em;
+    .column {
+        padding-top: 140px;
+        max-width: 100%;
     }
 
-    .column {
-        margin: 0 30px 30px 30px;
+    .users-list-user-container-list,
+    .users-list-user-container {
+        padding-left: 0;
+    }
+
+    dl {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, auto);
+        gap: 10px 10px;
+        font-size: 20px;
+    }
+
+    dl dd {
+        margin-bottom: 10px;
+    }
+
+    dl dt span {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        grid-row: 1 / 2;
+    }
+
+    dl dd span {
+        font-size: 22px;
+        margin-bottom: 10px;
+        grid-row: 2 / 3;
     }
 
     h2 {
-        font-size: 2.7em;
+        font-size: 30px;
     }
 
     h3 {
-        font-size: 2em;
-    }
-
-    .user-container dd {
-        padding-bottom: 10px;
-    }
-
-    .user-container dt {
-        padding-bottom: 0px;
-    }
-
-    .full-details-button {
-        display: block;
-        line-height: 30px;
-    }
-
-    li a p {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
+        font-size: 20px;
     }
 }
 
 @media only screen and (max-width: 600px) {
-    dt span {
-        font-size: 25px;
-
-    }
-
-    dd span a,
-    dd span {
-        font-size: 20px;
-    }
-
-    .user-container dl {
-        flex-wrap: wrap;
-    }
-
-    .user-container dt,
-    .user-container dd {
-        flex-basis: 100%;
-    }
-
-    .user-container dd {
-        padding-bottom: 10px;
-    }
-
-    .user-container dt {
-        padding-bottom: 0px;
-    }
-
-    .full-details-button {
+    a.full-details-button {
         display: block;
-        line-height: 30px;
-    }
-}
-
-@media only screen and (max-width: 400px) {
-
-    dt span {
-        font-size: 1.3em;
     }
 }
