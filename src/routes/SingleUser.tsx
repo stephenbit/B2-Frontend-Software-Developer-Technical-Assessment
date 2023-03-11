@@ -1,5 +1,6 @@
+import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { IUser } from "../helpers/Types";
+import { IUser } from '../helpers/Types';
 import { formatAriaPhoneNumber } from '../helpers/HelperFunctions'
 
 interface SingleUserProps {
@@ -59,10 +60,12 @@ function SingleUser({ users }: SingleUserProps) {
       { label: 'Catchphrase:', value: user.company.catchPhrase },
       { label: 'BS:', value: user.company.bs },
     ];
-    return dlContents.map(({ label, value }, index) => ([
-      <dt key={`label-${index}`}><span>{label}</span></dt>,
-      <dd key={`value-${index}`}><span>{value}</span></dd>,
-    ]));
+    return dlContents.map(({ label, value }, index) => (
+      <React.Fragment key={index}>
+        <dt><span>{label}</span></dt>
+        <dd><span>{value}</span></dd>
+      </React.Fragment>
+    ));
   };
 
 
@@ -71,18 +74,19 @@ function SingleUser({ users }: SingleUserProps) {
   }
 
   return (
-    <div className='column user-item-single'>
+    <div className='users-list'>
       <h2>{user.name}</h2>
-      <div className='single-user-user-container'>
+      <div className='user-container'>
         <dl>
           {generateSingleUserDlContents(user)}
+
+          <Link to={`/`} className="full-details-button">
+            <p>Return to the <br />
+              list of users</p>
+          </Link>
         </dl>
-        <Link to={`/`} className="full-details-button">
-          <p>Return to the full list</p>
-        </Link>
       </div>
     </div>
   );
 }
-
 export default SingleUser;

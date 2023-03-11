@@ -89,6 +89,8 @@ const UsersList: React.FC<{ users: UsersListUser[] }> = ({ users }) => {
             'aria-describedby': 'no-users-found'
           })}
         />
+        {filteredUsers.length === 0 && (
+          <h3>No users found with that name</h3>)}
       </div>
       <div>
         <ol>
