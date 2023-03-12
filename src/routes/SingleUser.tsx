@@ -71,17 +71,20 @@ function SingleUser({ users }: SingleUserProps) {
   }
 
   return (
-    <div className='users-list'>
-      <h2>{user.name}</h2>
-      <div className='single-user-user-container'>
-        <dl>
-          {generateSingleUserDlContents(user)}
-        </dl>
-        <Link to={`/`} className="full-details-button">
-          <p>Return to the full list</p>
-        </Link>
+    <section className='column'>
+      <div id={`user-${user.id}-container`}>
+        <label htmlFor={`user-${user.id}`} className="visually-hidden">Full name of the user:</label>
+        <h2 id={`user-${user.id}`}>{user.name}</h2>
+        <div className='single-user-user-container'>
+          <dl>
+            {generateSingleUserDlContents(user)}
+          </dl>
+          <Link to={`/`} className="full-details-button">
+            <p>Return to the full list</p>
+          </Link>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 

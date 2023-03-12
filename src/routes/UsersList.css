@@ -98,6 +98,10 @@ label[for="search-input"] {
     width: 100%;
 }
 
+.visually-hidden {
+    display: none;
+}
+
 @media only screen and (max-width: 768px) {
     .column {
         padding-top: 140px;

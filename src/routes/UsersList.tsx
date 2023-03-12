@@ -74,9 +74,10 @@ const UsersList: React.FC<{ users: UsersListUser[] }> = ({ users }) => {
   const filteredUsers = searchTerm ? searchUsers(sortedUsers, searchTerm) : sortedUsers;
 
   return (
-    <div className='column'>
+    <section className='column'>
       <h2>User List</h2>
       <div className='search-container'>
+
         <label htmlFor="search-input">Search by name:</label>
         <input
           type="text"
@@ -85,19 +86,19 @@ const UsersList: React.FC<{ users: UsersListUser[] }> = ({ users }) => {
           value={searchTerm}
           onChange={handleSearch}
           aria-label="Search for users"
-          {...(filteredUsers.length === 0 && {
-            'aria-describedby': 'no-users-found'
-          })}
+          {...(filteredUsers.length === 0 && { 'aria-describedby': 'no-users-found' })}
         />
         {filteredUsers.length === 0 && (
           <h3>No users found with that name</h3>)}
       </div>
-      <div>
+
+      <div id={`users-list-container`}>
         <ol>
           {filteredUsers.map((user) => (
             <li key={user.id} className="user-list-item">
               <div className='users-list-user-container'>
-                <h3>{user.name}</h3>
+                <label htmlFor={`user-${user.id}`} className="visually-hidden">Full name of the user:</label>
+                <h3 id={`user-${user.id}`}>{user.name}</h3>
                 <dl>
                   {generateUsersListDlContents(user)}
                 </dl>
@@ -113,7 +114,7 @@ const UsersList: React.FC<{ users: UsersListUser[] }> = ({ users }) => {
           ))}
         </ol>
       </div>
-    </div >
+    </section >
   );
 };
 

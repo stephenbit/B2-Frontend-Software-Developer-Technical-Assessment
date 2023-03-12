@@ -1,22 +1,3 @@
-/* App.css */
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto');
-
-:root {
-  --primary-color: #201751;
-  --secondary-color: #E6007E;
-  --background-color: #E8E7ED;
-  --primary-text-color: #080808;
-}
-
-html,
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  font-weight: 400;
-  margin: 0;
-  height: 100vh;
-}
-
 @font-face {
   font-family: 'Roboto';
   font-style: normal;

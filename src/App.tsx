@@ -6,6 +6,7 @@ import { IUser } from "./helpers/Types";
 import Header from "./components/Header";
 import './App.css';
 import './LoadingBar.css';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -28,40 +29,25 @@ function App() {
     fetchUsers();
   }, []);
 
-  if (!users || users.length < 1 || isLoading) {
-    return (
-      <div className='loading-container'>
-        {isLoading && (
-          <div className="loading-message">
-            <img src="/maskable_icon.png" alt="Social Security Scotland logo" />
-            <p>Loading, please wait...</p>
-          </div>
-        )}
-        <div className='loading-bar-container'>
-          <div className="loading-bar" aria-label="Loading bar">
-            {!isLoading &&
-              <p>If the content doesn't appear after a few seconds, please refresh the page or try again later.</p>}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div>
-      <BrowserRouter>
-        <Header />
-        <main className="main" role="main">
-          <Routes>
-            <Route path="/" element={<UsersList users={users} />} />
-            <Route path="/users/:userId" element={<SingleUser users={users} />} />
-          </Routes>
-        </main>
-        <footer className="App-footer" role="contentinfo">
-          <p>Created by S. Ramsay, &copy; {new Date().getFullYear()}</p>
-          <p>API provided by <a href="https://jsonplaceholder.typicode.com/">typicode</a></p>
-        </footer>
-      </BrowserRouter>
+      {(!users || users.length < 1 || isLoading) ? (
+        <LoadingScreen isLoading={isLoading} />
+      ) : (
+        <BrowserRouter>
+          <Header />
+          <main className="main" role="main">
+            <Routes>
+              <Route path="/" element={<UsersList users={users} />} />
+              <Route path="/users/:userId" element={<SingleUser users={users} />} />
+            </Routes>
+          </main>
+          <footer className="App-footer" role="contentinfo">
+            <p>Created by S. Ramsay, &copy; {new Date().getFullYear()}</p>
+            <p>API provided by <a href="https://jsonplaceholder.typicode.com/">typicode</a></p>
+          </footer>
+        </BrowserRouter>
+      )}
     </div>
   );
 }
