@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { UsersListUser } from "../helpers/Types";
 import {
@@ -51,7 +51,7 @@ const UsersList: React.FC<{ users: UsersListUser[] }> = ({ users }) => {
               {user.website}
             </a>
             {' '}
-            <wbr />
+
             (Opens in a new tab)
           </span>
         )
@@ -77,11 +77,29 @@ const UsersList: React.FC<{ users: UsersListUser[] }> = ({ users }) => {
 
   const filteredUsers = searchTerm ? searchUsers(sortedUsers, searchTerm) : sortedUsers;
 
+  const getUserUpdateAriaMessage = (users: UsersListUser[], filteredUsers: UsersListUser[]) => {
+    let message = '';
+
+    if (filteredUsers.length === 0) {
+      message = 'No users found';
+    } else if (users.length !== filteredUsers.length) {
+      message = 'The user list has been updated';
+    } else if (filteredUsers.length === users.length) {
+      message = 'All users are displayed';
+    }
+
+    return message ? (
+      <div aria-live="polite" aria-describedby="users-list-message" className='visually-hidden'>
+        {message}
+      </div>
+    ) : null;
+  }
+
   return (
     <section className='column'>
+      {getUserUpdateAriaMessage(users, filteredUsers)}
       <h2>User List</h2>
       <div className='search-container'>
-
         <label htmlFor="search-input">Search by name:</label>
         <input
           type="text"
@@ -89,19 +107,19 @@ const UsersList: React.FC<{ users: UsersListUser[] }> = ({ users }) => {
           placeholder="Search"
           value={searchTerm}
           onChange={handleSearch}
-          aria-label="Search for users"
-          {...(filteredUsers.length === 0 && { 'aria-describedby': 'no-users-found' })}
         />
         {filteredUsers.length === 0 && (
-          <h3>No users found with that name</h3>)}
+          <h3 id="no-users-found">No users found with that name</h3>
+        )}
       </div>
-
       <div id={`users-list-container`}>
         <ol>
           {filteredUsers.map((user) => (
             <li key={user.id} className="user-list-item">
               <div className='users-list-user-container'>
-                <label htmlFor={`user-${user.id}`} className="visually-hidden">Full name of the user:</label>
+                <label className="visually-hidden">
+
+                  Full name of the user:</label>
                 <h3 id={`user-${user.id}`}>{user.name}</h3>
                 <dl>
                   {generateUsersListDlContents(user)}
