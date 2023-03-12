@@ -123,10 +123,12 @@ const UsersList: React.FC<{ users: UsersListUser[] }> = ({ users }) => {
           {filteredUsers.map((user) => (
             <li key={user.id} className="user-list-item">
               <div className='users-list-user-container'>
-                <label className="visually-hidden">
-
-                  Full name of the user:</label>
-                <h3 id={`user-${user.id}`}>{user.name}</h3>
+            <label htmlFor={`user-${user.id}`} className="visually-hidden">
+  Name of the user:
+</label>
+<h3 id={`user-${user.id}`} aria-labelledby={`user-${user.id}`}>
+  {user.name}
+</h3>
                 <dl>
                   {generateUsersListDlContents(user)}
                 </dl>
