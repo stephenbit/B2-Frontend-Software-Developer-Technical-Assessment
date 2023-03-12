@@ -5,9 +5,26 @@ import { formatAriaPhoneNumber } from '../helpers/HelperFunctions';
 interface SingleUserProps {
   users: IUser[];
 }
-function SingleUser({ users, }: SingleUserProps) {
+
+function SingleUser({ users }: SingleUserProps) {
   const { userId } = useParams<{ userId: string }>();
   const user = users.find((user) => user.id.toString() === userId);
+
+  if (!user) {
+    return (
+      <section className='column'>
+        <div
+          id={`user-not-found-container`}
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <h2>404 - Page Not Found</h2>
+          <h3>The page you requested does not exist.</h3>
+        </div >
+      </section>
+    )
+  }
 
   const generateSingleUserDlContents = (user: IUser) => {
     const dlContents = [
@@ -68,17 +85,6 @@ function SingleUser({ users, }: SingleUserProps) {
       <dd key={`value-${index}`}><span>{value}</span></dd>,
     ]));
   };
-
-
-  if (!user) {
-    return (
-      <section className='column'>
-        <div id={`user-not-found-container`}>
-          <h2 id={'user-not-found'}>User not found</h2>
-        </div >
-      </section>
-    )
-  }
 
   return (
     <section className='column'>
