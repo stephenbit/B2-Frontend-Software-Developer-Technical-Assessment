@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UsersListUser } from "../helpers/Types";
 import {
@@ -51,7 +51,6 @@ const UsersList: React.FC<{ users: UsersListUser[] }> = ({ users }) => {
               {user.website}
             </a>
             {' '}
-
             (Opens in a new tab)
           </span>
         )
@@ -77,22 +76,29 @@ const UsersList: React.FC<{ users: UsersListUser[] }> = ({ users }) => {
 
   const filteredUsers = searchTerm ? searchUsers(sortedUsers, searchTerm) : sortedUsers;
 
+  let prevMessage = '';
+
   const getUserUpdateAriaMessage = (users: UsersListUser[], filteredUsers: UsersListUser[]) => {
     let message = '';
 
     if (filteredUsers.length === 0) {
       message = 'No users found';
     } else if (users.length !== filteredUsers.length) {
-      message = 'The user list has been updated';
+      message = `The user list has updated`
     } else if (filteredUsers.length === users.length) {
       message = 'All users are displayed';
     }
 
-    return message ? (
-      <div aria-live="polite" aria-describedby="users-list-message" className='visually-hidden'>
-        {message}
-      </div>
-    ) : null;
+    if (message !== prevMessage) {
+      prevMessage = message;
+      return message ? (
+        <div aria-live="polite" aria-describedby="users-list-message" className='visually-hidden'>
+          {message}
+        </div>
+      ) : null;
+    } else {
+      return null;
+    }
   }
 
   return (

@@ -35,7 +35,7 @@ function App() {
         <div
           id={`user-not-found-container`}
           role="alert"
-          aria-live="assertive"
+          aria-live="polite"
           aria-atomic="true"
         >
           <h2>404 - Page Not Found</h2>
