@@ -1,12 +1,11 @@
 import { Link, useParams } from 'react-router-dom';
 import { IUser } from '../helpers/Types';
-import { formatAriaPhoneNumber } from '../helpers/HelperFunctions'
+import { formatAriaPhoneNumber } from '../helpers/HelperFunctions';
 
 interface SingleUserProps {
   users: IUser[];
 }
-
-function SingleUser({ users }: SingleUserProps) {
+function SingleUser({ users, }: SingleUserProps) {
   const { userId } = useParams<{ userId: string }>();
   const user = users.find((user) => user.id.toString() === userId);
 
@@ -35,9 +34,14 @@ function SingleUser({ users }: SingleUserProps) {
       },
       {
         label: 'Phone:', value: (
-          <span aria-label={formatAriaPhoneNumber(user.phone)}>
-            {user.phone}
-          </span>
+          <>
+            <span className='visually-hidden'>
+              {formatAriaPhoneNumber(user.phone)}
+            </span>
+            <span aria-hidden='true'>
+              {user.phone}
+            </span>
+          </>
         )
       },
       {
@@ -67,7 +71,13 @@ function SingleUser({ users }: SingleUserProps) {
 
 
   if (!user) {
-    return <div>User not found</div>;
+    return (
+      <section className='column'>
+        <div id={`user-not-found-container`}>
+          <h2 id={'user-not-found'}>User not found</h2>
+        </div >
+      </section>
+    )
   }
 
   return (
@@ -79,7 +89,7 @@ function SingleUser({ users }: SingleUserProps) {
           <dl>
             {generateSingleUserDlContents(user)}
           </dl>
-          <Link to={`/`} className="full-details-button">
+          <Link to={`/`} replace className="full-details-button">
             <p>Return to the full list</p>
           </Link>
         </div>

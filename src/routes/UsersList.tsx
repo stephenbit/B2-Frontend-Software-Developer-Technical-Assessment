@@ -31,11 +31,15 @@ const UsersList: React.FC<{ users: UsersListUser[] }> = ({ users }) => {
       {
         label: 'Phone:',
         value:
-          <span
-            aria-label={formatAriaPhoneNumber(user.phone)}
-          >
-            {user.phone}
-          </span>
+          <>
+            <span className='visually-hidden'>
+              {formatAriaPhoneNumber(user.phone)}
+            </span>
+            <span aria-hidden='true'>
+              {user.phone}
+            </span>
+          </>
+
       },
       {
         label: 'Website:', value: (

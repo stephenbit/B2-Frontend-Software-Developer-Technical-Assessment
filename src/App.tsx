@@ -29,6 +29,22 @@ function App() {
     fetchUsers();
   }, []);
 
+  function NotFound() {
+    return (
+      <section className='column'>
+        <div
+          id={`user-not-found-container`}
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <h2>404 - Page Not Found</h2>
+          <h3>The page you requested does not exist.</h3>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <div>
       {(!users || users.length < 1 || isLoading) ? (
@@ -39,7 +55,15 @@ function App() {
           <main className="main" role="main">
             <Routes>
               <Route path="/" element={<UsersList users={users} />} />
-              <Route path="/users/:userId" element={<SingleUser users={users} />} />
+              <Route
+                path="/users/:userId"
+                element={
+                  <SingleUser
+                    users={users}
+                  />
+                }
+              />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
           <footer className="App-footer" role="contentinfo">
