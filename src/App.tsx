@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import UsersList from './routes/UsersList';
 import SingleUser from './routes/SingleUser';
 import { IUser } from "./helpers/Types";
@@ -24,12 +24,14 @@ function App() {
         return () => clearTimeout(timer);
       } catch (e) {
         setIsLoading(false);
+        console.log(e);
       }
     };
     fetchUsers();
   }, []);
 
   function NotFound() {
+    console.log('404 page not found');
     return (
       <section className='column'>
         <div
@@ -50,19 +52,12 @@ function App() {
       {(!users || users.length < 1 || isLoading) ? (
         <LoadingScreen isLoading={isLoading} />
       ) : (
-        <BrowserRouter>
+        <HashRouter>
           <Header />
           <main className="main" role="main">
             <Routes>
               <Route path="/" element={<UsersList users={users} />} />
-              <Route
-                path="/users/:userId"
-                element={
-                  <SingleUser
-                    users={users}
-                  />
-                }
-              />
+              <Route path="/users/:userId" element={<SingleUser users={users} />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
@@ -70,7 +65,7 @@ function App() {
             <p>Created by S. Ramsay, &copy; {new Date().getFullYear()}</p>
             <p>API provided by <a href="https://jsonplaceholder.typicode.com/">typicode</a></p>
           </footer>
-        </BrowserRouter>
+        </HashRouter>
       )}
     </div>
   );
