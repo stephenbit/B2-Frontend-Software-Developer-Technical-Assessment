@@ -16,7 +16,9 @@ const LoadingScreen: React.FC<Props> = ({ isLoading }) => {
             <div className='loading-bar-container'>
                 <div className="loading-bar" aria-label="Loading bar">
                     {!isLoading &&
-                        <p>If the content doesn't appear after a few seconds, please refresh the page or try again later.</p>}
+                        <p>
+                            If the content doesn't appear after a few seconds, please refresh the page or try again later.
+                        </p>}
                 </div>
             </div>
         </main>

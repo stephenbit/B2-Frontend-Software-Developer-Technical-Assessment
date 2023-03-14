@@ -6,8 +6,6 @@ import {
 import { TestData } from './TestData'
 import { IUser, UsersListUser } from './Types'
 
-
-
 const users = TestData
 
 describe('formatAriaPhoneNumber', () => {
